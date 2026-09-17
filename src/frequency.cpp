@@ -5,6 +5,7 @@
 
 namespace algorithm_lab {
 
+// change code
 int mostFrequentNaive(const std::vector<int>& values) {
     if (values.empty()) {
         throw std::invalid_argument("values must not be empty");
@@ -22,7 +23,7 @@ int mostFrequentNaive(const std::vector<int>& values) {
             }
         }
 
-        if (count > best_count || (count == best_count && current < best_value)) {
+        if (count > best_count || (count == best_count && current != best_value)) {
             best_count = count;
             best_value = current;
         }
@@ -30,10 +31,23 @@ int mostFrequentNaive(const std::vector<int>& values) {
 
     return best_value;
 }
-
+//add code unordered map
 int mostFrequentEfficient(const std::vector<int>& values) {
+    if (values.empty()) {
+        throw std::invalid_argument("values must not be empty");
+    }
+    std::unordered_map <int, int> frequencyMap;
+    int best_efficient_value = values[0];
+    int high_count = 0;
+    for(int num: values) {
+        frequencyMap[num]++;
+        if(frequencyMap[num] > high_count) {
+            high_count = frequencyMap[num];
+            best_efficient_value = num;
+        }
 
-    return false;
+    }
+    return best_efficient_value;
 }
 
 }
