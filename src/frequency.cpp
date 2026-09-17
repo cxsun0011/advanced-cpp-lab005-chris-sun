@@ -23,7 +23,7 @@ int mostFrequentNaive(const std::vector<int>& values) {
             }
         }
 
-        if (count > best_count || (count == best_count && current != best_value)) {
+        if (count > best_count|| (count == best_count && current < best_value)) {
             best_count = count;
             best_value = current;
         }
@@ -41,7 +41,7 @@ int mostFrequentEfficient(const std::vector<int>& values) {
     int high_count = 0;
     for(int num: values) {
         frequencyMap[num]++;
-        if(frequencyMap[num] > high_count) {
+        if(frequencyMap[num] > high_count || (frequencyMap[num] == high_count && num < best_efficient_value)) {
             high_count = frequencyMap[num];
             best_efficient_value = num;
         }
